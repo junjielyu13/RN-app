@@ -25,10 +25,16 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
+  AsyncStorage.setItem("test", "test!!!"); 
+ let fcm = AsyncStorage.getItem("test");
+
+ 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -62,6 +68,8 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -79,6 +87,7 @@ function App(): JSX.Element {
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
+           
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
