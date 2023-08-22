@@ -31,12 +31,30 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-  AsyncStorage.setItem("test", "test!!!"); 
- let fcm = AsyncStorage.getItem("test");
+
+AsyncStorage.setItem("test", "1"); 
+AsyncStorage.setItem("test2", "2"); 
 
  
-function Section({children, title}: SectionProps): JSX.Element {
+async function Section({children, title}: SectionProps): Promise<JSX.Element> {
   const isDarkMode = useColorScheme() === 'dark';
+  const fcm: String | null = await AsyncStorage.getItem("test");
+  console.log(fcm);
+    const fcm2  : String | null=  await AsyncStorage.getItem("test2");
+  console.log(fcm2);
+
+  if (fcm === "1") {
+    console.log("good!!!!11111111");
+  } else {
+    console.log("bad1111111111");
+  }
+
+    if (fcm2 === "2") {
+    console.log("good22222222");
+  } else {
+    console.log("bad2222222222");
+  }
+
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -67,6 +85,7 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
 
 
 
